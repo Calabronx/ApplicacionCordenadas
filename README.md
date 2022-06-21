@@ -7,6 +7,7 @@ Las tecnologias que utiliza:
 
 - Spring Framework
 - Java 11
+- Hibernate
 - MySQL para bases de datos
 - SpringFox y Swagger 2 para documentar API REST.
 - SL4J framework y Logback para manejo de Logging por archivo *logback.xml*.
@@ -60,6 +61,9 @@ Luego de eso crea otro archivo
 
 #Archivo de configuracion de conecciones
 >Spring utiliza el archivo *application.properties* para configurar los parametros de coneccion y configuraciones de las librerias que utiliza la api misma.
+
+#Hibernate
+>Con el uso del ORM Hibernate, al ejecutar por primera vez la applicacion, creara las tablas automaticamente para manejar y almacenar sus datos, con su mapeo relacional de objectos automatico.
 
 
 
