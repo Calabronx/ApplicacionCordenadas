@@ -14,6 +14,7 @@ Las tecnologias que utiliza:
 
 # Acceder a la App
 >Al ejecutar la applicacion y acceder al http://localhost:8080/ lo redigira a un Home, al darle click *aqui* la API le pedira que se logee con los siguientes usuario y contraseña en el siguiente formulario de Login
+
 >usuario: francis
 >password: thepassword
 ![image](https://user-images.githubusercontent.com/69681105/174815247-812651f2-7c0b-43d5-a0a3-df91d0e1b6b2.png)
