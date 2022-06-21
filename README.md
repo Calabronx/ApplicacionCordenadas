@@ -40,10 +40,10 @@ En Show History se puede ver un listado de todas las provincias que busco , con 
 # Request importantes de las API
 
 > Consumo de API Publica Provincias
-* GET localhost:8080/api/v1/cordinates_data/obtain_geo_cords/{nombre_provincia}
+* GET  http://localhost:8080/api/v1/cordinates_data/obtain_geo_cords/{nombre_provincia}
 
 Devuelve la latitud y longitud de la provincia buscada por nombre. Obtenido al consumir la API Publica.
->Ej: pasandole /api/v1/cordinates_data/obtain_geo_cords/Santiago devolvera latitud y longitud de Santiago del Estero.
+>Ej: pasandole  http://localhost:8080/api/v1/cordinates_data/obtain_geo_cords/Santiago devolvera latitud y longitud de Santiago del Estero.
 ![image](https://user-images.githubusercontent.com/69681105/174812268-ce477b03-e782-46e5-bec0-ec5a763e500c.png)
 Esto te realiza con el metodo public ResponseEntity<String> obtainProvinceCordsWithName(String name), devuelve una respuesta con las
 cordenadas de la provincia.
@@ -56,7 +56,7 @@ cordenadas de la provincia.
 ![image](https://user-images.githubusercontent.com/69681105/174827054-7a92e780-0cec-446c-8972-c59614db2194.png)
 
 
-* GET localhost:8080/index_history
+* GET  http://localhost:8080/index_history
 
 >Muestra el historial de cordenadas de provincias buscadas
 
