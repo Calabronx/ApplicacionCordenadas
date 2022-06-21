@@ -14,6 +14,7 @@ Las tecnologias que utiliza:
 - Spring Security Core para el uso de Authenticacion para un usuario unico, con BycriptEncoder para vincular la contraseña con la que esta encriptada en la base.
 - JUnit5 y Mockito para testear el service.
 - HTML, Bootstrap 5 y CSS para una simple vista del frontend.
+- JPA Repository
 
 # Acceder a la App
 >Al ejecutar la applicacion y acceder al http://localhost:8080/ lo redigira a un Home, al darle click *aqui* la API le pedira que se logee con los siguientes usuario y contraseña en el siguiente formulario de Login.
@@ -35,15 +36,20 @@ Lamentablemente no pude lograr que funcione el Buscar provincia por nombre desde
 
 En Show History se puede ver un listado de todas las provincias que busco , con sus lat y long. Esto la applicacion le hace un seguimiento de lo que el usuario ingresa y lo guarda en la base. Sin permitir duplicados.
 
+
 # Request importantes de las API
 
+> Consumo de API Publica Provincias
 * GET localhost:8080/api/v1/cordinates_data/obtain_geo_cords/{nombre_provincia}
 
-Devuelve la latitud y longitud de la provincia buscada por nombre.
+Devuelve la latitud y longitud de la provincia buscada por nombre. Obtenido al consumir la API Publica.
 >Ej: pasandole /api/v1/cordinates_data/obtain_geo_cords/Santiago devolvera latitud y longitud de Santiago del Estero.
 ![image](https://user-images.githubusercontent.com/69681105/174812268-ce477b03-e782-46e5-bec0-ec5a763e500c.png)
+Esto te realiza con el metodo public ResponseEntity<String> obtainProvinceCordsWithName(String name), devuelve una respuesta con las
+cordenadas de la provincia.
 
-* Para acceder a la UI de Swagger 2 desde este link http://localhost:8080/swagger-ui.html#/home-controller 
+# SpringFox y Swagger 2 Documentation API
+>Para acceder a la UI de Swagger 2 desde este link http://localhost:8080/swagger-ui.html#/home-controller 
 >Los endpoints importantes de la app
 ![image](https://user-images.githubusercontent.com/69681105/174826488-dc9f1bc6-0786-4e47-b99d-edce4f58c723.png)
 ![image](https://user-images.githubusercontent.com/69681105/174826789-cbc8e807-c3e5-4884-9692-4bb188884eda.png)
@@ -70,6 +76,7 @@ Luego de eso crea otro archivo
 # Hibernate
 
 >Con el uso del ORM Hibernate, al ejecutar por primera vez la applicacion, creara las tablas automaticamente para manejar y almacenar sus datos, con su mapeo relacional de objectos automatico.
+>En el application.properties esta seteado para logs de las queries con jpa
 
 
 
