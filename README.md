@@ -22,11 +22,14 @@
 >usuario: francis
 >password: thepassword
 ![image](https://user-images.githubusercontent.com/69681105/174823954-8249f2d1-ca80-4b11-90d9-2c80109b8e71.png)
+
 >Si los parametros de usuario son mal ingresados, no lo dejara ingresar y le devolvera lo siguiente
 ![image](https://user-images.githubusercontent.com/69681105/174816034-779a2894-4fe6-4f95-b503-204d5be106ab.png)
 
->Si intenta ingresar al index principal, o a swagger, o otro endpoint, lo redigira automaticamente al Login, esto por supuesto es manejado por Spring Security core.
+>Si intenta ingresar al index principal, o a swagger, o otro endpoint, sin haberse logeado, lo redigira automaticamente al Login, esto por supuesto es manejado por *Spring Security core*.
 >El usuario y contraseña son comparados con un usuario unico e existente creado en la base, que tiene la contraseña encriptada.
+>Esto se puede ver en el CustomerUserDetails.java que obtiene los atributos del usuario 
+>Y en el UserDetailsServiceImpl.java lo compara directamente con el usuario unico de la base, si no existe entonces lanza una excepcion no verificada de Spring security core UsernameNotFoundException
 La clase *WebSecurityConfig.java* del paquete security tiene configurado la principal funcion de redireccion de endpoints y seguridad.
 ![image](https://user-images.githubusercontent.com/69681105/174817148-9adae315-2e73-4d1b-86c1-7e0d66aa42e8.png)
 
