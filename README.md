@@ -76,8 +76,11 @@ Luego de eso crea otro archivo
 # Hibernate
 
 >Con el uso del ORM Hibernate, al ejecutar por primera vez la applicacion, creara las tablas automaticamente para manejar y almacenar sus datos, con su mapeo relacional de objectos automatico.
->En el application.properties esta seteado para logs de las queries con jpa
+>En el application.properties esta seteado para logs de las queries con jpa y mapeo de entities.
 
+![image](https://user-images.githubusercontent.com/69681105/174865706-f6a47a5b-eafc-4d0a-ac30-e8595f0754a9.png)
+  
+  
 
 
 
