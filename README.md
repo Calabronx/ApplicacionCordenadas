@@ -58,6 +58,9 @@ La aplicacion logea en la carpeta logs un archivo CordinatesLog.text que es carg
 Luego de eso crea otro archivo
 ![image](https://user-images.githubusercontent.com/69681105/174822988-a9e383b8-8072-4955-9135-de25114dc523.png)
 
+#Archivo de configuracion de conecciones
+>Spring utiliza el archivo *application.properties* para configurar los parametros de coneccion y configuraciones de las librerias que utiliza la api misma.
+
 
 
 
