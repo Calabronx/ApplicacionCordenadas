@@ -31,68 +31,40 @@ public class CordinatesService {
         this.cordinatesRepository = cordinatesRepository;
     }
 
-    //returnProvinceData
-    public ResponseEntity<String> obtainProvinceCordinates(String name) {
-        RestTemplate restTemplate = new RestTemplate();
-        String fooResourceUrl = "https://apis.datos.gob.ar/georef/api/provincias?nombre=";
-        ResponseEntity<String> response =
-                restTemplate.getForEntity(fooResourceUrl + name, String.class);
-        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
-
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode root = mapper.readTree(response.getBody());
-            JsonNode jsonName = root.path("lat");
-            Assertions.assertNotNull(jsonName.asText());
-        } catch (JsonMappingException e) {
-            System.out.println("A JsonMappingException has occurred");
-            logger.error("JsonMappingException was trowed, when tryng to obtain the data mapping from the province");
-            e.printStackTrace();
-            return new ResponseEntity<>("An error has occurred mapping the data API", HttpStatus.CONFLICT);
-
-        } catch (JsonProcessingException e) {
-            System.out.println("A JsonProcessingException has occurred");
-            logger.error("JsonProcessingException was trowed, when tryng to process the json data of the province");
-            e.printStackTrace();
-            return new ResponseEntity<>("An error has occurred processing the data API", HttpStatus.CONFLICT);
-        }
-        //return new ResponseEntity<String("Successfully province data obtained",HttpStatus.OK);
-        return response;
-    }
-
+    /**
+     *obtainProvinceCordsWithName(name)
+     * obtiene por parametro el string del nombre de la provincia, devuelve un responseEntity con la latitud y longitud de la provincia.
+     * Utilizando ObjectMapper para mapear la respuesta de la Api Publica y JsonNode para pasarle los Json
+     */
     public ResponseEntity<String> obtainProvinceCordsWithName(String name) {
         ProvinceCordinates province = new ProvinceCordinates();
         RestTemplate restTemplate = new RestTemplate();
 
-        String fooResourceUrl = "https://apis.datos.gob.ar/georef/api/provincias?nombre=";
-        String response = restTemplate.getForObject(fooResourceUrl + name, String.class);
+        String url = "https://apis.datos.gob.ar/georef/api/provincias?nombre="; //url de la api
+        String response = restTemplate.getForObject(url + name, String.class);// construye la request con string de parametro name
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
 
-            JsonNode rootNode = objectMapper.readTree(response);
-            JsonNode latNode = rootNode.findPath("lat");
-            JsonNode longNode = rootNode.findPath("lon");
+            JsonNode rootNode = objectMapper.readTree(response); //obtiene la respuesta json de la api
+            JsonNode latNode = rootNode.findPath("lat");// obtiene el parametro clave lat de latitud
+            JsonNode longNode = rootNode.findPath("lon");// obtiene el parametro clave lon de longitud
 
             province.setLatitude(latNode.asDouble());
             province.setLongitude(longNode.asDouble());
-
-//            if (name.equals(" ")) {
-//                logger.warn("The name of the province does not exist");
-//                return new ResponseEntity<>("The name of the province does not exist", HttpStatus.NOT_ACCEPTABLE);
-//            }
             province.setName(name);
-            saveHistoryRecords(province);
+
+            saveHistoryRecords(province);// guarda el objecto province con sus atributos lat y long obtenidos
             logger.info("Province Cordinates Name obtained: " + province.getName());
 
         } catch (JsonProcessingException e) {
             System.out.println("A JsonProcessingException has occurred");
-            logger.error("JsonMappingException was trowed, when tryng to obtain the data mapping from the province: " + province.getName());
+            logger.error("A JsonMappingException was thrown, when tried to obtain the data mapping from the province: " + province.getName());
             e.printStackTrace();
             return new ResponseEntity<>("An error has occurred processing the data API", HttpStatus.CONFLICT);
         } catch (NullPointerException e) {
             System.out.println("A NullPointerException has occurred");
-            logger.error("NullPointerException was trowed, when tryng to process a null json value of the province: " + province.getName());
+            logger.error("NullPointerException was thrown, when tried to process a null json value of the province: " + province.getName());
             e.printStackTrace();
             return new ResponseEntity<>("A null json field was intended to process by the API data", HttpStatus.CONFLICT);
         }
@@ -102,23 +74,28 @@ public class CordinatesService {
         return new ResponseEntity<>(province.returnLatAndLong(province.getLatitude(), province.getLongitude()), HttpStatus.OK);
     }
 
-    //guarda la data de la provincia importante en una base como seguimiento de un historial. List creo que es ambiguo usar en return y en implementacion con list.add(data)
+    /**
+     * saveHistoryRecords(provinceData)
+     * Guarda la data de la provincia importante en una base como seguimiento de un historial.Compara con los registros de la tabla
+     * Comparando por el nombre ,si no existe la provincia la agrega  y si no es el caso, no.
+     */
     public ResponseEntity<String> saveHistoryRecords(ProvinceCordinates provinceData) {
         ProvinceObject prov = new ProvinceObject(provinceData);
         ProvinceCordinates dataProvince = new ProvinceCordinates();
 
-        Optional<ProvinceCordinates> checkProvince = Optional.ofNullable(prov.getProvinceCordinates());
+        Optional<ProvinceCordinates> checkProvince = Optional.ofNullable(prov.getProvinceCordinates()); //chequea si el objeto es nulo
         List<ProvinceCordinates> dataList = new ArrayList<>();
-        dataList = cordinatesRepository.findAll();
+        dataList = cordinatesRepository.findAll();//Obtiene la informacion de la base existente para analizar mas adelante
 
-        Iterator<ProvinceCordinates> dataListIt = dataList.iterator();
+        Iterator<ProvinceCordinates> dataListIt = dataList.iterator();// Itera la lista
 
-        if (checkProvince.isPresent()) {
+        if (checkProvince.isPresent()) { //vuelve a chequear si es null
             int indexProvince = 0;
             String keyExistingDb;
             String keyNew;
             boolean flag = true;
 
+            //Itera cada elemento de la lista obtenida por la tabla, comprobando que la provincia buscada exista en la base
             while (dataListIt.hasNext()) {
                 dataListIt.next();
                 keyExistingDb = dataList.get(indexProvince).getName();
@@ -128,10 +105,7 @@ public class CordinatesService {
                     flag = false;
                     break;
                 } else {
-                    //dataProvince = cordinatesRepository.save(provinceData);
-                    //logger.info("Province data saved in db successfully");
                     logger.info("Checking province if already exist...");
-                    //flag = true;
                 }
                 indexProvince++;
             }
@@ -145,6 +119,7 @@ public class CordinatesService {
         }
         return ResponseEntity.ok("Province data saved in db successfully");
     }
+
 
     public List<ProvinceCordinates> findAllProvinces() {
         return cordinatesRepository.findAll();

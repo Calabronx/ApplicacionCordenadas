@@ -10,8 +10,7 @@ import java.util.Collections;
 
 public class CustomerUserDetails implements UserDetails {
 
-    //deberia ser final, para que nadie extienda la clase y pueda editar los campos de User
-    private User user;
+    private final User user;
 
     public CustomerUserDetails(User user) {
         this.user = user;

@@ -14,20 +14,28 @@ public class HomeController {
     @Autowired
     private CordinatesService cordinatesService;
 
+    /**
+     * Redirige al home, es accesible sin logearse  previamente.
+     */
     @GetMapping("/")
     public String showHome() {
         return "home";
     }
 
+    /**
+     * Devuelve el menu principal de la api.
+     */
     @RequestMapping("/index_cordinates")
     public String showAppView(@ModelAttribute String name) {
-
         return "indexCordinates";
     }
 
+    /**
+     * Devuelve el historial de cordenadas de la api.
+     */
     @RequestMapping("/index_history")
     public String showHistoryPage(Model model) {
-        model.addAttribute("history",cordinatesService.findAllProvinces());
+        model.addAttribute("history", cordinatesService.findAllProvinces());
         return "historyPage";
     }
 }

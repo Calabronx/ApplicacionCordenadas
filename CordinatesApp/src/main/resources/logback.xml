@@ -1,5 +1,6 @@
 <configuration>
-    <variable name="LOG_PATH" value="C://Users//sebic//OneDrive//Documentos//FlockITChallenge//CordinatesApp//src//main//logs//CordinatesLog.log"/>
+    <variable name="LOG_PATH"
+              value="C://Users//sebic//OneDrive//Documentos//FlockITChallenge//CordinatesApp//src//main//logs//CordinatesLog.log"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">

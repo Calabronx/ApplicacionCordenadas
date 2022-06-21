@@ -4,14 +4,13 @@ import com.ChallengeFlock.cordinatesApplication.CordinatesApp.model.ProvinceCord
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface CordinatesRepository extends JpaRepository<ProvinceCordinates,String> {
+public interface CordinatesRepository extends JpaRepository<ProvinceCordinates, String> {
 
-    //List<ProvinceCordinates> findByName(String name);
     ProvinceCordinates findByName(String name);
-    boolean findByNameAndId(Optional<String> name, Long id);
+
     List<ProvinceCordinates> findAll();
+
     ProvinceCordinates save(ProvinceCordinates prov);
 
 }

@@ -33,9 +33,7 @@ public class SpringFoxConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
-    //http://localhost:8080/api/v2/api-docs
-    //http://localhost:8080/api/v2/swagger-ui
-    //http://localhost:8080/cordinates/v2/swagger-ui
+    //http://localhost:8080/swagger-ui.html#/home-controller para acceder a la UI de swagger
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/api/v2/api-docs", "/v2/api-docs");
@@ -44,6 +42,4 @@ public class SpringFoxConfig extends WebMvcConfigurerAdapter {
         registry.addRedirectViewController("/api/swagger-resources/configuration/security", "/swagger-resources/configuration/security");
         registry.addRedirectViewController("/api/swagger-resources", "/swagger-resources");
     }
-
-
 }
