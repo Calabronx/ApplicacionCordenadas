@@ -13,9 +13,10 @@ Las tecnologias que utiliza:
 - SL4J framework y Logback para manejo de Logging por archivo *logback.xml*.
 - Spring Security Core para el uso de Authenticacion para un usuario unico, con BycriptEncoder para vincular la contraseña con la que esta encriptada en la base.
 - JUnit5 y Mockito para testear el service.
+- HTML, Bootstrap 5 y CSS para una simple vista del frontend.
 
 # Acceder a la App
->Al ejecutar la applicacion y acceder al http://localhost:8080/ lo redigira a un Home, al darle click *aqui* la API le pedira que se logee con los siguientes usuario y contraseña en el siguiente formulario de Login
+>Al ejecutar la applicacion y acceder al http://localhost:8080/ lo redigira a un Home, al darle click *aqui* la API le pedira que se logee con los siguientes usuario y contraseña en el siguiente formulario de Login.
 
 >usuario: francis
 >password: thepassword
@@ -50,20 +51,24 @@ Devuelve la latitud y longitud de la provincia buscada por nombre.
 
 
 * GET localhost:8080/index_history
+
 >Muestra el historial de cordenadas de provincias buscadas
 
-#SL4J y Logback Systema de Logging
+# SL4J y Logback Systema de Logging
+
 >La API utiliza slf4j-api contra logback-core y logback-classic
 
 >Lo hace muy facil de configurar en un archivo logback.xml
-La aplicacion logea en la carpeta logs un archivo CordinatesLog.text que es cargado hasta un maximo de 10MB y guardado con fecha al llegar a su limite
+La aplicacion logea en la carpeta logs, un archivo CordinatesLog.text que es cargado hasta un maximo de 10MB y guardado con fecha al llegar a su limite.
 Luego de eso crea otro archivo
 ![image](https://user-images.githubusercontent.com/69681105/174822988-a9e383b8-8072-4955-9135-de25114dc523.png)
 
-#Archivo de configuracion de conecciones
+# Archivo de configuracion de conecciones
+
 >Spring utiliza el archivo *application.properties* para configurar los parametros de coneccion y configuraciones de las librerias que utiliza la api misma.
 
-#Hibernate
+# Hibernate
+
 >Con el uso del ORM Hibernate, al ejecutar por primera vez la applicacion, creara las tablas automaticamente para manejar y almacenar sus datos, con su mapeo relacional de objectos automatico.
 
 
