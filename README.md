@@ -12,6 +12,7 @@ Las tecnologias que utiliza:
 - SpringFox y Swagger 2 para documentar API REST.
 - SL4J framework y Logback para manejo de Logging por archivo *logback.xml*.
 - Spring Security Core para el uso de Authenticacion para un usuario unico, con BycriptEncoder para vincular la contraseña con la que esta encriptada en la base.
+- JUnit5 y Mockito para testear el service.
 
 # Acceder a la App
 >Al ejecutar la applicacion y acceder al http://localhost:8080/ lo redigira a un Home, al darle click *aqui* la API le pedira que se logee con los siguientes usuario y contraseña en el siguiente formulario de Login
