@@ -18,7 +18,7 @@ Las tecnologias que utiliza:
 >usuario: francis
 >password: thepassword
 ![image](https://user-images.githubusercontent.com/69681105/174815247-812651f2-7c0b-43d5-a0a3-df91d0e1b6b2.png)
->Si se los parametros de usuario son mal ingresados, no lo dejara ingresar y le devolvera lo siguiente
+>Si los parametros de usuario son mal ingresados, no lo dejara ingresar y le devolvera lo siguiente
 ![image](https://user-images.githubusercontent.com/69681105/174816034-779a2894-4fe6-4f95-b503-204d5be106ab.png)
 
 >Si intenta ingresar al index principal, o a swagger, o otro endpoint, lo redigira automaticamente al Login, esto por supuesto es manejado por Spring Security core.
