@@ -1,4 +1,4 @@
-# ApplicacionCordenadas
+# AplicacionCordenadas
 >API REST que consume una API publica de cordenadas de provincias https://apis.datos.gob.ar/georef/api/provincias, para de devolver latitud y longitud como principal funcion.
 
 [Mas informacion de la API Publica](https://datosgobar.github.io/georef-ar-api/)
