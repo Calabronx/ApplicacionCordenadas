@@ -17,12 +17,12 @@ Las tecnologias que utiliza:
 
 >usuario: francis
 >password: thepassword
-![image](https://user-images.githubusercontent.com/69681105/174815247-812651f2-7c0b-43d5-a0a3-df91d0e1b6b2.png)
+![image](https://user-images.githubusercontent.com/69681105/174823954-8249f2d1-ca80-4b11-90d9-2c80109b8e71.png)
 >Si los parametros de usuario son mal ingresados, no lo dejara ingresar y le devolvera lo siguiente
 ![image](https://user-images.githubusercontent.com/69681105/174816034-779a2894-4fe6-4f95-b503-204d5be106ab.png)
 
 >Si intenta ingresar al index principal, o a swagger, o otro endpoint, lo redigira automaticamente al Login, esto por supuesto es manejado por Spring Security core.
->El usuario y contraseña son comparados con un usuario existente creado en la base, que tiene la contraseña encriptada.
+>El usuario y contraseña son comparados con un usuario unico e existente creado en la base, que tiene la contraseña encriptada.
 La clase *WebSecurityConfig.java* del paquete security tiene configurado la principal funcion de redireccion de endpoints y seguridad.
 ![image](https://user-images.githubusercontent.com/69681105/174817148-9adae315-2e73-4d1b-86c1-7e0d66aa42e8.png)
 
@@ -42,8 +42,10 @@ Devuelve la latitud y longitud de la provincia buscada por nombre.
 
 * Para acceder a la UI de Swagger 2 desde este link http://localhost:8080/swagger-ui.html#/home-controller 
 >Los endpoints importantes de la app
-![image](https://user-images.githubusercontent.com/69681105/174813570-f2e16ac0-cc26-4a70-88b5-f8cf8f412d8f.png)
-![image](https://user-images.githubusercontent.com/69681105/174814383-8d67851e-e65d-40af-987a-8dbe96805078.png)
+![image](https://user-images.githubusercontent.com/69681105/174826488-dc9f1bc6-0786-4e47-b99d-edce4f58c723.png)
+![image](https://user-images.githubusercontent.com/69681105/174826789-cbc8e807-c3e5-4884-9692-4bb188884eda.png)
+![image](https://user-images.githubusercontent.com/69681105/174827054-7a92e780-0cec-446c-8972-c59614db2194.png)
+
 
 * GET localhost:8080/index_history
 >Muestra el historial de cordenadas de provincias buscadas
