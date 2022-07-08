@@ -26,6 +26,8 @@ public class ProvinceCordinates {
     @JsonProperty("long")
     private double longitude;
 
+    private boolean isFound;
+
 
     public Long getId() {
         return id;
@@ -57,6 +59,14 @@ public class ProvinceCordinates {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public boolean isFound() {
+        return isFound;
+    }
+
+    public void setFound(boolean found) {
+        isFound = found;
     }
 
     public String returnLatAndLong(double lat, double lon) {

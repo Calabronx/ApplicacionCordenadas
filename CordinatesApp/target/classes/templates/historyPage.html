@@ -1,56 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<meta charset="utf-8">
-<base href="https://getbootstrap.com/docs/5.0/examples/cover/">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TobyPet Inventory</title>
-<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
-<link rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous">
-<!-- Bootstrap core CSS -->
-
-<link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon"
-      href="/docs/5.0/assets/img/favicons/https://previews.123rf.com/images/olgakrichevtseva/olgakrichevtseva1901/olgakrichevtseva190100083/117193857-pet-shop-logo-template-animal-shelter-emblem-label-design-elements-for-zoo-shop-pets-care-and-goods-.jpg"
-      sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Provincia Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/font.css" rel="stylesheet">
+    <!--    <link href="/css/nav.css" rel="stylesheet">-->
+</head>
 <body>
-<div class="container mt-4">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <h4>Historial de provincias</h4>
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Latitud</th>
-            <th>Longitud</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="histories:${history}">
-            <td th:text="${histories.name}">Nombre</td>
-            <td th:text="${histories.latitude}">Latitud</td>
-            <td th:text="${histories.longitude}">Longitud</td>
-            <td>
-            </th>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="sidenav">
+    <h4 class="white-text">API Cordenadas</h4>
+    <br><br><br><a th:href="@{/index_cordinates}">Inicio</a><br><br>
+    <br><br><br><a th:href="@{/search_province}">Buscar Provincia</a><br><br>
+    <a th:href="@{/index_history}">Historial</a><br><br><br>
+    <a th:href="@{/swagger-ui.html#/home-controller}">Swagger API</a><br><br><br><br><br><br><br>
+    <a th:href="@{/logout}">Salir</a>
 </div>
-</body>
-<body>
+<div class="main">
+    <br><br>
+    <div class="container mt-4">
+
+        <br><h4>Historial de provincias</h4>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="histories:${history}">
+                <td th:text="${histories.name}">Nombre</td>
+                <td th:text="${histories.latitude}">Latitud</td>
+                <td th:text="${histories.longitude}">Longitud</td>
+                <td>
+                </th>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

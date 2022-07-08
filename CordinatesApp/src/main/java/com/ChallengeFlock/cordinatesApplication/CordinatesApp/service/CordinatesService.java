@@ -55,7 +55,14 @@ public class CordinatesService {
             province.setName(name);
 
             saveHistoryRecords(province);// guarda el objecto province con sus atributos lat y long obtenidos
+
             logger.info("Province Cordinates Name obtained: " + province.getName());
+
+//            var isReal = province.isFound(); // flag para chequear si la provincia existe
+
+//            if (!isReal) {
+//                return new ResponseEntity<>("Province does not exist!",HttpStatus.NOT_FOUND); // devuelve una respuesta, que no encontro nada
+//            }
 
         } catch (JsonProcessingException e) {
             System.out.println("A JsonProcessingException has occurred");
@@ -77,7 +84,7 @@ public class CordinatesService {
     /**
      * saveHistoryRecords(provinceData)
      * Guarda la data de la provincia importante en una base como seguimiento de un historial.Compara con los registros de la tabla
-     * Comparando por el nombre ,si no existe la provincia la agrega  y si no es el caso, no.
+     * Comparando los datos de la provincia,si no existe la provincia en el historial la agrega  y si no es el caso, no.
      */
     public ResponseEntity<String> saveHistoryRecords(ProvinceCordinates provinceData) {
         ProvinceObject prov = new ProvinceObject(provinceData);
@@ -92,6 +99,12 @@ public class CordinatesService {
         if (checkProvince.isPresent()) { //vuelve a chequear si es null
             int indexProvince = 0;
             String keyExistingDb;
+            double lat = provinceData.getLatitude();
+            double lon = provinceData.getLongitude();
+            double latDb;
+            double lonDb;
+
+
             String keyNew;
             boolean flag = true;
 
@@ -100,10 +113,26 @@ public class CordinatesService {
                 dataListIt.next();
                 keyExistingDb = dataList.get(indexProvince).getName();
                 keyNew = provinceData.getName();
-                if (keyNew.equals(keyExistingDb)) {
+
+                latDb = dataList.get(indexProvince).getLatitude();
+                lonDb = dataList.get(indexProvince).getLongitude();
+
+                var latConversion = String.valueOf(lat);
+                var lonConversion = String.valueOf(lon);
+
+                var keyLatDb = String.valueOf(latDb);
+                var keyLonDb = String.valueOf(lonDb);
+
+
+                if (keyNew.equals(keyExistingDb) || latConversion.equals(keyLatDb) && lonConversion.equals(keyLonDb)) {
                     logger.info("Province already exist in db history");
                     flag = false;
+                    provinceData.setFound(true);
                     break;
+                } else if(latConversion.equals("0.0") && lonConversion.equals("0.0")) {
+                    logger.info("Province doesn't exist");
+                    flag = false;
+                    provinceData.setFound(false);
                 } else {
                     logger.info("Checking province if already exist...");
                 }
