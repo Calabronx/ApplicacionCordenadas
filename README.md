@@ -36,7 +36,7 @@ y en el UserDetailsServiceImpl.java lo compara directamente con el usuario unico
 
 # Index principal de la applicacion al logearse con exito
 ![image](https://user-images.githubusercontent.com/69681105/174819686-466b47e9-1f40-4057-9f32-80d5bea78885.png)
-Lamentablemente no pude lograr que funcione el Buscar provincia por nombre desde el formulario html, tiene que hacerse a mano pasandole el nombre de la provincia por el endpoint.
+
 
 En Show History se puede ver un listado de todas las provincias que busco , con sus lat y long. Esto la applicacion le hace un seguimiento de lo que el usuario ingresa y lo guarda en la base. Sin permitir duplicados.
 
